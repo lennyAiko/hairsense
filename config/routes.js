@@ -66,4 +66,12 @@ module.exports.routes = {
   "GET /store/sub_categories/:id": "subcategory/view",
   "PATCH /store/sub_categories/:id": "subcategory/update",
   "DELETE /store/sub_categories/:id": "subcategory/delete",
+
+  "POST /store/products": "product/create",
+  "GET /store/products": "product/fetch",
+  "GET /store/products/new": "product/new",
+  "GET /store/products/trending": "product/trending",
+  "GET /store/products/:id": "product/view",
+  "PATCH /store/products/:id": "product/update",
+  "DELETE /store/products/:id": "product/delete",
 };

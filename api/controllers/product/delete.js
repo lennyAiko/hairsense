@@ -1,28 +1,20 @@
 module.exports = {
+  friendlyName: "Delete",
 
+  description: "Delete product.",
 
-  friendlyName: 'Delete',
-
-
-  description: 'Delete product.',
-
-
-  inputs: {
-
-  },
-
+  inputs: {},
 
   exits: {
-
+    success: {
+      responseType: "ok",
+    },
   },
 
-
-  fn: async function (inputs) {
+  fn: async function (inputs, exits) {
+    await Product.destroyOne({ id: this.req.params.id });
 
     // All done.
-    return;
-
-  }
-
-
+    return exits.success("Successfully deleted product");
+  },
 };

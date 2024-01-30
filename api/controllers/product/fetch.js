@@ -1,28 +1,27 @@
 module.exports = {
+  friendlyName: "Fetch",
 
+  description: "Fetch product.",
 
-  friendlyName: 'Fetch',
-
-
-  description: 'Fetch product.',
-
-
-  inputs: {
-
-  },
-
+  inputs: {},
 
   exits: {
-
+    success: {
+      responseType: "ok",
+    },
+    myBad: {
+      responseType: "internalServerError",
+    },
   },
 
+  fn: async function (inputs, exits) {
+    const products = await Product.find({});
 
-  fn: async function (inputs) {
+    if (!products) {
+      return exits.myBad("Could not fetch products");
+    }
 
     // All done.
-    return;
-
-  }
-
-
+    return exits.success(products);
+  },
 };

@@ -10,6 +10,7 @@ module.exports = {
     name: {
       type: "string",
       required: true,
+      unique: true,
     },
     actualPrice: {
       columnName: "actual_price",
@@ -21,6 +22,7 @@ module.exports = {
     },
     views: {
       type: "number",
+      defaultsTo: 0,
     },
     productImg: {
       type: "string",

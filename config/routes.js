@@ -29,4 +29,28 @@ module.exports.routes = {
       produces: ["application/json"],
     },
   },
+
+  "POST /accounts/token_refresh": {
+    action: "auth/refresh-token",
+    swagger: {
+      tag: ["accounts"],
+      summary: "Refresh user token",
+      consumes: ["application/json"],
+      produces: ["application/json"],
+    },
+  },
+
+  // USER
+  "GET /accounts/user": {
+    action: "user/profile",
+    swagger: {
+      tag: ["user"],
+      summary: "User profile",
+      consumes: ["application/json"],
+      produces: ["application/json"],
+      security: [{ BearerAuth: [] }],
+    },
+  },
+
+  "PATCH /accounts/user": "user/update",
 };

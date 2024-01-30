@@ -53,4 +53,17 @@ module.exports.routes = {
   },
 
   "PATCH /accounts/user": "user/update",
+
+  // STORE
+  "POST /store/categories": "category/create",
+  "GET /store/categories": "category/fetch",
+  "GET /store/categories/:id": "category/view",
+  "PATCH /store/categories/:id": "category/update",
+  "DELETE /store/categories/:id": "category/delete",
+
+  "POST /store/sub_categories": "subcategory/create",
+  "GET /store/sub_categories": "subcategory/fetch",
+  "GET /store/sub_categories/:id": "subcategory/view",
+  "PATCH /store/sub_categories/:id": "subcategory/update",
+  "DELETE /store/sub_categories/:id": "subcategory/delete",
 };

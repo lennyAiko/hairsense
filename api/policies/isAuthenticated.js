@@ -1,8 +1,6 @@
 module.exports = async (req, res, proceed) => {
   var token;
 
-  console.log(token);
-
   if (req.headers && req.headers.authorization) {
     var parts = req.headers.authorization.split(" ");
 

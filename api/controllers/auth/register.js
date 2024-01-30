@@ -64,6 +64,6 @@ module.exports = {
     }
 
     // All done.
-    return exits.success("User registration successful");
+    return exits.success({ message: "User registration successful" });
   },
 };

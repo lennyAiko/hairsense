@@ -7,7 +7,7 @@
  * ```
  *     return res.accepted();
  *     // -or-
- *     return res.accepted(optionalData);
+ *     return res.accepted(data);
  * ```
  *
  * Or with actions2:
@@ -22,12 +22,11 @@
  * ```
  *     throw 'somethingHappened';
  *     // -or-
- *     throw { somethingHappened: optionalData }
+ *     throw { somethingHappened: data }
  * ```
  */
 
-module.exports = function accepted(optionalData) {
-
+module.exports = function accepted(data) {
   // Get access to `req` and `res`
   var res = this.res;
 
@@ -35,13 +34,12 @@ module.exports = function accepted(optionalData) {
   var statusCodeToSet = 201;
 
   // If no data was provided, use res.sendStatus().
-  if (optionalData === undefined) {
-    sails.log.info('Ran custom response: res.accepted()');
-    return res.status(statusCodeToSet).json({status: statusCodeToSet});
+  if (data === undefined) {
+    sails.log.info("Ran custom response: res.accepted()");
+    return res.status(statusCodeToSet).json({ status: statusCodeToSet });
   }
   // Set status code and send response data.
   else {
-    return res.status(statusCodeToSet).send({status: statusCodeToSet, message: optionalData});
+    return res.status(statusCodeToSet).send({ status: statusCodeToSet, data });
   }
-
 };

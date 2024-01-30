@@ -9,11 +9,22 @@
  */
 
 module.exports.routes = {
+  // ACCOUNTS
   "POST /accounts/register": {
     action: "auth/register",
     swagger: {
       tag: ["accounts"],
       summary: "Register user",
+      consumes: ["application/json"],
+      produces: ["application/json"],
+    },
+  },
+
+  "POST /accounts/sign_in": {
+    action: "auth/login",
+    swagger: {
+      tag: ["accounts"],
+      summary: "Log in user",
       consumes: ["application/json"],
       produces: ["application/json"],
     },

@@ -7,7 +7,7 @@
  * ```
  *     return res.notFound();
  *     // -or-
- *     return res.notFound(optionalData);
+ *     return res.notFound(data);
  * ```
  *
  * Or with actions2:
@@ -22,12 +22,11 @@
  * ```
  *     throw 'somethingHappened';
  *     // -or-
- *     throw { somethingHappened: optionalData }
+ *     throw { somethingHappened: data }
  * ```
  */
 
-module.exports = function notFound(optionalData) {
-
+module.exports = function notFound(data) {
   // Get access to `req` and `res`
   var res = this.res;
 
@@ -35,13 +34,12 @@ module.exports = function notFound(optionalData) {
   var statusCodeToSet = 404;
 
   // If no data was provided, use res.sendStatus().
-  if (optionalData === undefined) {
-    sails.log.info('Ran custom response: res.notFound()');
-    return res.status(statusCodeToSet).json({status: statusCodeToSet});
+  if (data === undefined) {
+    sails.log.info("Ran custom response: res.notFound()");
+    return res.status(statusCodeToSet).json({ status: statusCodeToSet });
   }
   // Set status code and send response data.
   else {
-    return res.status(statusCodeToSet).send({status: statusCodeToSet, message: optionalData});
+    return res.status(statusCodeToSet).send({ status: statusCodeToSet, data });
   }
-
 };

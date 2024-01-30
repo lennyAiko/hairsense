@@ -1,0 +1,33 @@
+{
+  "name": "hairsense",
+  "private": true,
+  "version": "0.0.0",
+  "description": "a Sails application",
+  "keywords": [],
+  "dependencies": {
+    "@logisticinfotech/sails-hook-actions2-swagger": "^0.0.9",
+    "@sailshq/lodash": "^3.10.3",
+    "sails": "^1.5.8",
+    "sails-hook-orm": "^4.0.0",
+    "sails-hook-sockets": "^2.0.0"
+  },
+  "devDependencies": {
+    "eslint": "5.16.0"
+  },
+  "scripts": {
+    "start": "NODE_ENV=production node app.js",
+    "test": "npm run lint && npm run custom-tests && echo 'Done.'",
+    "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
+    "custom-tests": "echo \"(No other custom tests yet.)\" && echo"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lenny/hairsense.git"
+  },
+  "author": "lenny",
+  "license": "",
+  "engines": {
+    "node": "^20.9"
+  }
+}

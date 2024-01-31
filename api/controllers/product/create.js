@@ -56,7 +56,7 @@ module.exports = {
             ".tmp/public/products"
           ),
           saveAs: function (file, cb) {
-            imgRandonName = `${randomStrings()}_${file.filename}`;
+            let imgRandonName = `${randomStrings()}_${file.filename}`;
             cb(null, imgRandonName);
           },
         },
@@ -66,7 +66,7 @@ module.exports = {
           }
 
           let productImg = require("util").format(
-            `${UPLOAD_URL}/products/${imgRandonName}`
+            `${UPLOAD_URL}/products/${imgRandomName}`
           );
           await Product.create({
             name,

@@ -12,7 +12,7 @@ module.exports = {
   },
 
   fn: async function (inputs, exits) {
-    const trendingProducts = await CSSMathProduct.find({}).sort("views ASC");
+    const trendingProducts = await Product.find({}).sort("views ASC");
 
     // All done.
     return exits.success(trendingProducts);

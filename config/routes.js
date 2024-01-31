@@ -61,12 +61,14 @@ module.exports.routes = {
   "PATCH /store/categories/:id": "category/update",
   "DELETE /store/categories/:id": "category/delete",
 
+  // SUB_CATEGORIES
   "POST /store/sub_categories": "subcategory/create",
   "GET /store/sub_categories": "subcategory/fetch",
   "GET /store/sub_categories/:id": "subcategory/view",
   "PATCH /store/sub_categories/:id": "subcategory/update",
   "DELETE /store/sub_categories/:id": "subcategory/delete",
 
+  // PRODUCTS
   "POST /store/products": "product/create",
   "GET /store/products": "product/fetch",
   "GET /store/products/new": "product/new",

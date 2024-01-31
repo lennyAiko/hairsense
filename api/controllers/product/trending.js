@@ -1,28 +1,20 @@
 module.exports = {
+  friendlyName: "Trending",
 
+  description: "Trending product.",
 
-  friendlyName: 'Trending',
-
-
-  description: 'Trending product.',
-
-
-  inputs: {
-
-  },
-
+  inputs: {},
 
   exits: {
-
+    success: {
+      responseType: "ok",
+    },
   },
 
-
-  fn: async function (inputs) {
+  fn: async function (inputs, exits) {
+    const trendingProducts = await CSSMathProduct.find({}).sort("views ASC");
 
     // All done.
-    return;
-
-  }
-
-
+    return exits.success(trendingProducts);
+  },
 };

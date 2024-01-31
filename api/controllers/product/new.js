@@ -1,28 +1,20 @@
 module.exports = {
+  friendlyName: "New",
 
+  description: "New product.",
 
-  friendlyName: 'New',
-
-
-  description: 'New product.',
-
-
-  inputs: {
-
-  },
-
+  inputs: {},
 
   exits: {
-
+    success: {
+      responseType: "ok",
+    },
   },
 
-
-  fn: async function (inputs) {
+  fn: async function (inputs, exits) {
+    const newProducts = await Product.find({}).sort("createdAt ASC");
 
     // All done.
-    return;
-
-  }
-
-
+    return exits.success(newProducts);
+  },
 };

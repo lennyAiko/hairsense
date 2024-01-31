@@ -1,3 +1,17 @@
+require("dotenv").config();
+const UPLOAD_URL = process.env.UPLOAD_URL;
+
+function randomStrings(length, chars) {
+  var length = 16;
+  var result = "";
+  var chars =
+    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_";
+  for (var i = length; i > 0; --i) {
+    result += chars[Math.round(Math.random() * (chars.length - 1))];
+  }
+  return result;
+}
+
 module.exports = {
   friendlyName: "Create",
 
@@ -34,7 +48,35 @@ module.exports = {
 
   fn: async function ({ name, actualPrice, desc, subcategory }, exits) {
     try {
-      await Product.create({ name, actualPrice, desc, subcategory });
+      this.req.file("productImg").upload(
+        {
+          maxByte: 3000000, //3MB
+          dirname: require("path").resolve(
+            sails.config.appPath,
+            ".tmp/public/products"
+          ),
+          saveAs: function (file, cb) {
+            imgRandonName = `${randomStrings()}_${file.filename}`;
+            cb(null, imgRandonName);
+          },
+        },
+        async function whenDone(err, uploadedFiles) {
+          if (err) {
+            return this.res.serverError(err);
+          }
+
+          let productImg = require("util").format(
+            `${UPLOAD_URL}/products/${imgRandonName}`
+          );
+          await Product.create({
+            name,
+            actualPrice,
+            desc,
+            subcategory,
+            productImg,
+          });
+        }
+      );
     } catch (err) {
       throw exits.badCombo("Could not create product");
     }

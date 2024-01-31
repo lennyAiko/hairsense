@@ -20,7 +20,7 @@ module.exports = {
 
     products: {
       collection: "product",
-      via: "subcategories",
+      via: "subcategory",
     },
   },
 };

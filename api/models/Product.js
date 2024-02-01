@@ -29,8 +29,12 @@ module.exports = {
       columnName: "product_img",
     },
 
+    // associations
     subcategory: {
       model: "subcategory",
+    },
+    favourite: {
+      model: "favourite",
     },
   },
 };

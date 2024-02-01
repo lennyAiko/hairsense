@@ -40,6 +40,12 @@ module.exports = {
       required: true,
       protect: true,
     },
+
+    // associations
+    favourite: {
+      model: "favourite",
+      via: "user",
+    },
   },
 
   customToJSON: function () {

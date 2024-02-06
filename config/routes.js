@@ -81,4 +81,12 @@ module.exports.routes = {
   "POST /store/favourite/items": "favourite/add",
   "GET /store/favourite/": "favourite/view",
   "DELETE /store/favourite/items/:id": "favourite/delete",
+
+  // CART
+  "POST /store/cart/items": "cart/add",
+  "GET /store/cart/items": "cart/view",
+  "DELETE /store/cart/items/:id": "cart/delete",
+
+  // ORDER
+  "POST /store/order": "order/create",
 };

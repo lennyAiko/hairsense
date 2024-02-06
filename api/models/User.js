@@ -46,9 +46,24 @@ module.exports = {
       model: "favourite",
       via: "user",
     },
+    cart: {
+      collection: "cart",
+      via: "user",
+    },
+    order: {
+      collection: "order",
+      via: "user",
+    },
   },
 
   customToJSON: function () {
-    return _.omit(this, ["password", "createdAt", "updatedAt"]);
+    return _.omit(this, [
+      "password",
+      "createdAt",
+      "updatedAt",
+      "favourite",
+      "cart",
+      "order",
+    ]);
   },
 };

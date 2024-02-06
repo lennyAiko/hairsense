@@ -21,7 +21,7 @@ module.exports = {
 
   fn: async function ({ product }, exits) {
     sails.log(product);
-    let item = Favourite.findOrCreate(
+    let item = await Favourite.findOrCreate(
       { user: this.req.user.id },
       { user: this.req.user.id, product }
     ).exec(async (err, favourite, wasCreated) => {

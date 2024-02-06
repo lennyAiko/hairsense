@@ -83,10 +83,10 @@ module.exports.routes = {
   "DELETE /store/favourite/items/:id": "favourite/delete",
 
   // CART
-  "POST /store/cart/items": "cart/add",
-  "GET /store/cart/items": "cart/view",
-  "DELETE /store/cart/items/:id": "cart/delete",
+  "POST /store/cart/": "cart/create",
+  "GET /store/cart/": "cart/view",
+  "DELETE /store/cart/": "cart/empty",
 
   // ORDER
-  "POST /store/order": "order/create",
+  "POST /store/order": "orders/create",
 };

@@ -19,4 +19,6 @@ module.exports.policies = {
   "*": "pathLogger",
   "user/*": ["pathLogger", "isAuthenticated", "checkIssuer"],
   "favourite/*": ["pathLogger", "isAuthenticated", "checkIssuer"],
+  "cart/*": ["pathLogger", "isAuthenticated", "checkIssuer"],
+  "orders/*": ["pathLogger", "isAuthenticated", "checkIssuer"],
 };

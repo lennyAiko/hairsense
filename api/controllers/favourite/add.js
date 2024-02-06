@@ -4,7 +4,7 @@ module.exports = {
   description: "Create favourite.",
 
   inputs: {
-    product: {
+    products: {
       type: "string",
       required: true,
     },
@@ -19,11 +19,10 @@ module.exports = {
     },
   },
 
-  fn: async function ({ product }, exits) {
-    sails.log(product);
+  fn: async function ({ products }, exits) {
     let item = await Favourite.findOrCreate(
       { user: this.req.user.id },
-      { user: this.req.user.id, product }
+      { user: this.req.user.id, products }
     ).exec(async (err, favourite, wasCreated) => {
       if (err) {
         sails.log(err);
@@ -34,7 +33,7 @@ module.exports = {
         return favourite;
       } else {
         sails.log(wasCreated);
-        await Favourite.updateOne({ id: favourite.id }).set({ product });
+        await Favourite.updateOne({ id: favourite.id }).set({ products });
         return favourite;
       }
     });

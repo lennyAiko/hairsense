@@ -46,18 +46,6 @@ module.exports = {
       type: "number",
       required: true,
     },
-    status: {
-      type: "string",
-      isIn: ["Order Placed", "Out for Delivery", "Order Delivered"],
-      maxLength: 32,
-      required: true,
-    },
-    payment: {
-      type: "string",
-      isIn: ["Failed", "Pending", "Successful"],
-      maxLength: 32,
-      required: true,
-    },
   },
 
   exits: {
@@ -70,21 +58,14 @@ module.exports = {
   },
 
   fn: async function (
-    {
-      firstName,
-      lastName,
-      phone,
-      address,
-      state,
-      city,
-      method,
-      amount,
-      status,
-      payment,
-    },
+    { firstName, lastName, phone, address, state, city, method, amount },
     exits
   ) {
-    const products = await Cart.findOne({ user: this.req.user.id });
+    const cart = await Cart.findOne({ user: this.req.user.id });
+
+    if (!cart) {
+      return exits.badCombo("Could not place order");
+    }
 
     let order = await Order.create({
       firstName,
@@ -95,9 +76,9 @@ module.exports = {
       city,
       method,
       amount,
-      status,
-      payment,
-      products: products.products,
+      status: "Order Placed",
+      payment: "Pending",
+      products: cart.products,
     }).fetch();
 
     if (!order) {
@@ -113,10 +94,15 @@ module.exports = {
       meta: "test meta",
     };
 
-    let res = await fetch(
-      `${HYDROGEN_TEST_URL}/merchant/initiate-payment`,
-      payload
-    );
+    sails.log(HYDROGEN_TEST_URL);
+
+    let res = await fetch(HYDROGEN_TEST_URL, payload, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: process.env.HYDROGEN_API_KEY,
+      },
+    });
 
     res = await res.json();
 
@@ -125,7 +111,7 @@ module.exports = {
     // All done.
     return exits.success({
       message: "Successfully fetched payment URL",
-      url: res.data.url,
+      // url: res.data.url,
     });
   },
 };

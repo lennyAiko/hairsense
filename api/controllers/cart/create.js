@@ -28,13 +28,13 @@ module.exports = {
         return exits.badCombo("Could not create cart");
       }
       if (wasCreated) {
-        return exits.success(cart);
+        return cart;
       } else {
         await Cart.updateOne({ id: cart.id }).set({ products });
-        return exits.success(cart);
+        return cart;
       }
     });
     // All done.
-    return exits.success(item);
+    return exits.success("Successfully added to cart");
   },
 };

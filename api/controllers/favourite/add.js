@@ -20,6 +20,7 @@ module.exports = {
   },
 
   fn: async function ({ product }, exits) {
+    sails.log(product);
     let item = Favourite.findOrCreate(
       { user: this.req.user.id },
       { user: this.req.user.id, product }
@@ -29,8 +30,10 @@ module.exports = {
         return exits.badCombo("Could not create favourite");
       }
       if (wasCreated) {
+        sails.log(wasCreated);
         return favourite;
       } else {
+        sails.log(wasCreated);
         await Favourite.updateOne({ id: favourite.id }).set({ product });
         return favourite;
       }

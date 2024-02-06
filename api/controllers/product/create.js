@@ -47,27 +47,35 @@ module.exports = {
   },
 
   fn: async function ({ name, actualPrice, desc, subcategory }, exits) {
-    try {
-      this.req.file("productImg").upload(
-        {
-          maxByte: 3000000, //3MB
-          dirname: require("path").resolve(
-            sails.config.appPath,
-            ".tmp/public/products"
-          ),
-          saveAs: function (file, cb) {
-            let imgRandonName = `${randomStrings()}_${file.filename}`;
-            cb(null, imgRandonName);
-          },
+    this.req.file("productImg").upload(
+      {
+        maxByte: 3000000, //3MB
+        dirname: require("path").resolve(
+          sails.config.appPath,
+          ".tmp/public/products"
+        ),
+        saveAs: function (file, cb) {
+          imgRandomName = `${randomStrings()}_${file.filename}`;
+          cb(null, imgRandomName);
         },
-        async function whenDone(err, uploadedFiles) {
-          if (err) {
-            return this.res.serverError(err);
-          }
+      },
+      async function whenDone(err, uploadedFiles) {
+        if (err) {
+          return this.res.serverError(err);
+        }
 
-          let productImg = require("util").format(
-            `${UPLOAD_URL}/products/${imgRandomName}`
-          );
+        // let productImg = require("util").format(
+        //   `${UPLOAD_URL}/products/${randoms}_${uploadedFiles[0].filename}`
+        // );
+
+        let productImg = require("util").format(
+          `${UPLOAD_URL}/products/${imgRandomName}`
+        );
+
+        if (uploadedFiles < 1) {
+          return exits.badCombo("Could not create product");
+        }
+        try {
           await Product.create({
             name,
             actualPrice,
@@ -75,12 +83,14 @@ module.exports = {
             subcategory,
             productImg,
           });
+          return exits.success("Successfully created product");
+        } catch (err) {
+          sails.log(err);
+          return exits.badCombo("Could not create product");
         }
-      );
-    } catch (err) {
-      throw exits.badCombo("Could not create product");
-    }
+      }
+    );
+
     // All done.
-    return exits.success("Successfully created product");
   },
 };

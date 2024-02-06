@@ -1,10 +1,10 @@
 module.exports = {
 
 
-  friendlyName: 'Update',
+  friendlyName: 'Create',
 
 
-  description: 'Update favourite.',
+  description: 'Create orders.',
 
 
   inputs: {

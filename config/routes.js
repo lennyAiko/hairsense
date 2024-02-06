@@ -80,6 +80,5 @@ module.exports.routes = {
   // FAVOURITES
   "POST /store/favourite/items": "favourite/add",
   "GET /store/favourite/": "favourite/view",
-  "PATCH /store/favourite/items/:id": "favourite/update",
   "DELETE /store/favourite/items/:id": "favourite/delete",
 };

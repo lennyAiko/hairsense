@@ -46,8 +46,6 @@ module.exports = {
   },
 
   fn: async function ({ name, actualPrice, desc, subcategory }, exits) {
-    let imgRandomName;
-
     let product = await Product.updateOne({ id: this.req.params.id }).set({
       name,
       actualPrice,

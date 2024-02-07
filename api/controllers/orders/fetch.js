@@ -15,7 +15,18 @@ module.exports = {
   },
 
   fn: async function (inputs, exits) {
-    const orders = await Order.find({});
+    if (this.req.user.role === "client") {
+      const orders = await Order.find({ user: this.req.user.id });
+
+      if (!orders) {
+        return exits.notFound("Could not fetch orders");
+      }
+
+      return exits.success(orders);
+    }
+
+    const orders = await Order.find({ user: this.req.user.id });
+
     if (!orders) {
       return exits.notFound("Could not fetch orders");
     }

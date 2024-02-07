@@ -50,6 +50,6 @@ module.exports.datastores = {
     // url: 'mysql://user:password@host:port/database',
 
     adapter: require("sails-mongo"),
-    url: process.env.DB_LOCAL_URL,
+    url: `${process.env.DB_LOCAL_URL}`,
   },
 };

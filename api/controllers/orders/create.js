@@ -106,6 +106,7 @@ module.exports = {
       payment: "Pending",
       products: cart.products,
       transactionRef: data.data.ref,
+      user: this.req.user.id,
     }).fetch();
 
     if (!order) {

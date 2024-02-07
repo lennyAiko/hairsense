@@ -48,7 +48,8 @@ module.exports = {
       // adapter: 'sails-mysql',
       // url: 'mysql://user:password@host:port/database',
       adapter: require("sails-mongo"),
-      url: process.env.DB_PROD_URL,
+      // url: `${process.env.DB_PROD_URL}`,
+      url: "mongodb+srv://lenny:%40Security21@cluster0.836bk4k.mongodb.net/hairsenseretail?retryWrites=true&w=majority",
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
       //  ||   sensitive credentials like `url` using an environment variable.

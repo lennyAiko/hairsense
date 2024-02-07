@@ -92,4 +92,6 @@ module.exports.routes = {
   "POST /store/webhook": "orders/webhook",
   "GET /store/order": "orders/fetch",
   "GET /store/order/:id": "orders/view",
+  "PATCH /store/order/:id": "orders/update",
+  "DELETE /store/order/:id": "orders/delete",
 };

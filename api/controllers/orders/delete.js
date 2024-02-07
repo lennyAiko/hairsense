@@ -21,6 +21,6 @@ module.exports = {
       return exits.notFound("Order not found");
     }
     // All done.
-    return exits.success("Successfully deleted order"););
+    return exits.success("Successfully deleted order");
   },
 };

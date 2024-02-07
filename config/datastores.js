@@ -1,3 +1,4 @@
+require("dotenv").config();
 /**
  * Datastores
  * (sails.config.datastores)
@@ -49,6 +50,6 @@ module.exports.datastores = {
     // url: 'mysql://user:password@host:port/database',
 
     adapter: require("sails-mongo"),
-    url: "mongodb://localhost:27017/hairsense",
+    url: process.env.DB_LOCAL_URL,
   },
 };

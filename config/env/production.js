@@ -1,3 +1,4 @@
+require("dotenv").config();
 /**
  * Production environment settings
  * (sails.config.*)
@@ -46,6 +47,8 @@ module.exports = {
     default: {
       // adapter: 'sails-mysql',
       // url: 'mysql://user:password@host:port/database',
+      adapter: require("sails-mongo"),
+      url: process.env.DB_PROD_URL,
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
       //  ||   sensitive credentials like `url` using an environment variable.

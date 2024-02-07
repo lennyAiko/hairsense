@@ -63,6 +63,18 @@ module.exports = {
     products: {
       type: "ref",
     },
+    transactionRef: {
+      type: "string",
+      columnName: "transaction_ref",
+    },
+    customerEmail: {
+      columnName: "customer_email",
+      type: "string",
+    },
+    chargedAmount: {
+      type: "number",
+      columnName: "charged_amount",
+    },
     // associations
     user: {
       model: "user",

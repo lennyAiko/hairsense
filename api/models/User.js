@@ -43,7 +43,7 @@ module.exports = {
 
     // associations
     favourite: {
-      model: "favourite",
+      collection: "favourite",
       via: "user",
     },
     cart: {

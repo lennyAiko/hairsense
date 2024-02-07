@@ -89,4 +89,5 @@ module.exports.routes = {
 
   // ORDER
   "POST /store/order": "orders/create",
+  "POST /store/webhook": "orders/webhook",
 };

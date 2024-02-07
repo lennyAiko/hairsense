@@ -1,5 +1,6 @@
 require("dotenv").config();
 const HYDROGEN_TEST_URL = process.env.HYDROGEN_TEST_URL;
+const HYDROGEN_API_KEY = process.env.HYDROGEN_API_KEY;
 
 module.exports = {
   friendlyName: "Create",
@@ -67,6 +68,31 @@ module.exports = {
       return exits.badCombo("Could not place order");
     }
 
+    const payload = {
+      email: this.req.user.email,
+      amount,
+      callback: "https://www.hairsenseretail.com/my_account",
+      currency: "NGN",
+      description: "Payment for Hairsense Retail",
+      meta: "test meta",
+    };
+
+    let res = await fetch(HYDROGEN_TEST_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: HYDROGEN_API_KEY,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json();
+    sails.log(data);
+
+    if (data.statusCode !== "90000") {
+      return exits.badCombo("Could not place order");
+    }
+
     let order = await Order.create({
       firstName,
       lastName,
@@ -79,39 +105,17 @@ module.exports = {
       status: "Order Placed",
       payment: "Pending",
       products: cart.products,
+      transactionRef: data.data.ref,
     }).fetch();
 
     if (!order) {
       return exits.badCombo("Could not create order");
     }
 
-    const payload = {
-      email: this.req.user.email,
-      amount,
-      callback: "https://www.hairsenseretail.com/my_account",
-      currency: "NGN",
-      description: "Payment for Hairsense Retail",
-      meta: "test meta",
-    };
-
-    sails.log(HYDROGEN_TEST_URL);
-
-    let res = await fetch(HYDROGEN_TEST_URL, payload, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: process.env.HYDROGEN_API_KEY,
-      },
-    });
-
-    res = await res.json();
-
-    sails.log(res);
-
     // All done.
     return exits.success({
       message: "Successfully fetched payment URL",
-      // url: res.data.url,
+      url: data.data.url,
     });
   },
 };

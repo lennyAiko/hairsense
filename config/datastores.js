@@ -46,10 +46,8 @@ module.exports.datastores = {
      *    (See https://sailsjs.com/config/datastores for help.)                 *
      *                                                                          *
      ***************************************************************************/
-    // adapter: 'sails-mysql',
-    // url: 'mysql://user:password@host:port/database',
 
     adapter: require("sails-mongo"),
-    url: `${process.env.DB_LOCAL_URL}`,
+    url: "mongodb://localhost:27017/hairsenseretail",
   },
 };

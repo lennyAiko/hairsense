@@ -19,7 +19,6 @@ require("dotenv").config();
  * For more best practices and tips, see:
  * https://sailsjs.com/docs/concepts/deployment
  */
-
 module.exports = {
   /**************************************************************************
    *                                                                         *
@@ -45,11 +44,8 @@ module.exports = {
      *                                                                          *
      ***************************************************************************/
     default: {
-      // adapter: 'sails-mysql',
-      // url: 'mysql://user:password@host:port/database',
       adapter: require("sails-mongo"),
-      // url: `${process.env.DB_PROD_URL}`,
-      url: "mongodb+srv://lenny:%40Security21@cluster0.836bk4k.mongodb.net/hairsenseretail?retryWrites=true&w=majority",
+      url: "mongodb://lenny:%40Security21@cluster0.836bk4k.mongodb.net:27017/hairsenseretail",
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
       //  ||   sensitive credentials like `url` using an environment variable.

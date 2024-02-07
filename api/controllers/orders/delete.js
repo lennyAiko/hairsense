@@ -1,7 +1,7 @@
 module.exports = {
-  friendlyName: "View",
+  friendlyName: "Delete",
 
-  description: "View orders.",
+  description: "Delete orders.",
 
   inputs: {},
 
@@ -15,15 +15,12 @@ module.exports = {
   },
 
   fn: async function (inputs, exits) {
-    const order = await Order.findOne({
-      id: this.req.params.id,
-    });
+    let orderRecord = await Order.destroyOne({ id: this.req.params.id });
 
     if (!order) {
       return exits.notFound("Order not found");
     }
-
     // All done.
-    return exits.success(order);
+    return exits.success("Successfully deleted order"););
   },
 };

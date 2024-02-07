@@ -17,7 +17,7 @@ module.exports = {
   fn: async function (inputs, exits) {
     let orderRecord = await Order.destroyOne({ id: this.req.params.id });
 
-    if (!order) {
+    if (!orderRecord) {
       return exits.notFound("Order not found");
     }
     // All done.

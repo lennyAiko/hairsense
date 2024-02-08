@@ -45,11 +45,11 @@ module.exports = {
       inputs.password
     );
 
-    let userRecord = await User.findOne({ email });
+    // let userRecord = await User.findOne({ email });
 
-    if (userRecord) {
-      throw { invalidData: "Email already exists" };
-    }
+    // if (userRecord) {
+    //   throw { invalidData: "Email already exists" };
+    // }
 
     const newUser = await User.create({
       email,

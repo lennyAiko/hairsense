@@ -16,6 +16,24 @@ module.exports.policies = {
    *                                                                          *
    ***************************************************************************/
 
+  "category/create": [
+    "pathLogger",
+    "isAuthenticated",
+    "checkIssuer",
+    "isAdmin",
+  ],
+  "category/update": [
+    "pathLogger",
+    "isAuthenticated",
+    "checkIssuer",
+    "isAdmin",
+  ],
+  "category/delete": [
+    "pathLogger",
+    "isAuthenticated",
+    "checkIssuer",
+    "isAdmin",
+  ],
   "*": "pathLogger",
   "user/*": ["pathLogger", "isAuthenticated", "checkIssuer"],
   "favourite/*": ["pathLogger", "isAuthenticated", "checkIssuer"],

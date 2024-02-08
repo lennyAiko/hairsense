@@ -44,9 +44,11 @@ module.exports = {
      *                                                                          *
      ***************************************************************************/
     default: {
-      adapter: "sails-postgresql",
+      // adapter: "sails-postgresql",
+      adapter: "sails-mongo",
       url: process.env.DB_URL,
-      poolSize: 10,
+      // ssl: true,
+      // poolSize: 2,
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
       //  ||   sensitive credentials like `url` using an environment variable.

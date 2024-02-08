@@ -9,9 +9,9 @@ module.exports = {
   attributes: {
     name: {
       type: "string",
+      unique: true,
       required: true,
       maxLength: 40,
-      unique: true,
     },
 
     category: {

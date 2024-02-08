@@ -37,11 +37,15 @@ module.exports = {
       throw { badCombo: "Invalid credentials" };
     }
 
-    await sails.helpers.passwords
-      .checkPassword(inputs.password, userRecord.password)
-      .intercept("incorrect", () => {
-        throw { badCombo: "Incorrect password" };
-      });
+    try {
+      await sails.helpers.passwords
+        .checkPassword(inputs.password, userRecord.password)
+        .intercept("incorrect", () => {
+          return exits.badCombo("Incorrect password");
+        });
+    } catch (err) {
+      return exits.badCombo("Incorrect password");
+    }
 
     const token = await sails.helpers.signToken({
       user: {

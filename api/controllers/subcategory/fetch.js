@@ -12,7 +12,7 @@ module.exports = {
   },
 
   fn: async function (inputs, exits) {
-    const subcategories = await Subcategory.find({});
+    const subcategories = await Subcategory.find({}).populate("products");
 
     // All done.
     return exits.success(subcategories);

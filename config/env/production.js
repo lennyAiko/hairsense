@@ -44,8 +44,9 @@ module.exports = {
      *                                                                          *
      ***************************************************************************/
     default: {
-      adapter: require("sails-mongo"),
-      url: "mongodb://lenny:%40Security21@cluster0.836bk4k.mongodb.net:27017/hairsenseretail",
+      // adapter: require("sails-mongo"),
+      // url: process.env.DB_URL,
+      // ssl: true,
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
       //  ||   sensitive credentials like `url` using an environment variable.

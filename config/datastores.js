@@ -48,6 +48,6 @@ module.exports.datastores = {
      ***************************************************************************/
 
     adapter: require("sails-mongo"),
-    url: "mongodb://localhost:27017/hairsenseretail",
+    url: process.env.DB_LOCAL_URL,
   },
 };

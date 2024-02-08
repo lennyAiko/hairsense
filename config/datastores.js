@@ -47,7 +47,7 @@ module.exports.datastores = {
      *                                                                          *
      ***************************************************************************/
 
-    adapter: require("sails-mongo"),
+    adapter: "sails-mongo",
     url: process.env.DB_LOCAL_URL,
   },
 };

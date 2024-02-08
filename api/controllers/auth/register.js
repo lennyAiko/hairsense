@@ -11,12 +11,18 @@ module.exports = {
     },
     firstName: {
       type: "string",
+      required: true,
+      minLength: 3,
     },
     lastName: {
       type: "string",
+      required: true,
+      minLength: 3,
     },
     phone: {
       type: "string",
+      required: true,
+      minLength: 11,
     },
     password: {
       type: "string",

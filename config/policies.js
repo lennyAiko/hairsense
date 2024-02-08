@@ -34,6 +34,8 @@ module.exports.policies = {
     "checkIssuer",
     "isAdmin",
   ],
+  "order/delete": ["pathLogger", "isAuthenticated", "checkIssuer", "isAdmin"],
+  "order/update": ["pathLogger", "isAuthenticated", "checkIssuer", "isAdmin"],
   "*": "pathLogger",
   "user/*": ["pathLogger", "isAuthenticated", "checkIssuer"],
   "favourite/*": ["pathLogger", "isAuthenticated", "checkIssuer"],

@@ -27,6 +27,7 @@ module.exports = {
     try {
       await Subcategory.create({ name, category });
     } catch (err) {
+      sails.log(err);
       throw exits.badCombo(err);
     }
     // All done.

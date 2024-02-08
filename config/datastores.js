@@ -47,7 +47,8 @@ module.exports.datastores = {
      *                                                                          *
      ***************************************************************************/
 
-    adapter: "sails-mongo",
-    url: process.env.DB_LOCAL_URL,
+    adapter: "sails-postgresql",
+    url: process.env.DB_URL,
+    poolSize: 10,
   },
 };

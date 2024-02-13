@@ -57,6 +57,7 @@ module.exports.routes = {
   // STORE
   "POST /store/categories": "category/create",
   "GET /store/categories": "category/fetch",
+  "GET /store/categories/:id/products": "category/products",
   "GET /store/categories/:id": "category/view",
   "PATCH /store/categories/:id": "category/update",
   "DELETE /store/categories/:id": "category/delete",
@@ -94,4 +95,12 @@ module.exports.routes = {
   "GET /store/order/:id": "orders/view",
   "PATCH /store/order/:id": "orders/update",
   "DELETE /store/order/:id": "orders/delete",
+
+  // CONTACT
+  "POST /contact": "contact/create",
+  "DELETE /contact/:id": "contact/delete",
+  "GET /contact": "contact/fetch",
+
+  // CUSTOMERS
+  "GET /customers": "user/customers",
 };

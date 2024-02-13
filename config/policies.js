@@ -36,9 +36,13 @@ module.exports.policies = {
   // ],
   // "orders/delete": ["pathLogger", "isAuthenticated", "checkIssuer", "isAdmin"],
   // "orders/update": ["pathLogger", "isAuthenticated", "checkIssuer", "isAdmin"],
+
   "*": "pathLogger",
   "user/*": ["pathLogger", "isAuthenticated", "checkIssuer"],
   "favourite/*": ["pathLogger", "isAuthenticated", "checkIssuer"],
   "cart/*": ["pathLogger", "isAuthenticated", "checkIssuer"],
   "orders/*": ["pathLogger", "isAuthenticated", "checkIssuer"],
+  "contact/delete": ["pathLogger", "isAuthenticated", "checkIssuer", "isAdmin"],
+  "contact/fetch": ["pathLogger", "isAuthenticated", "checkIssuer", "isAdmin"],
+  "user/customers": ["pathLogger", "isAuthenticated", "checkIssuer", "isAdmin"],
 };

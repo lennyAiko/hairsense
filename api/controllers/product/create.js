@@ -47,6 +47,7 @@ module.exports = {
   },
 
   fn: async function ({ name, actualPrice, desc, subcategory }, exits) {
+    let imgRandomName;
     this.req.file("productImg").upload(
       {
         maxByte: 3000000, //3MB

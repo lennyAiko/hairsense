@@ -1,5 +1,5 @@
 module.exports = (req, res, proceed) => {
-  if (!req.user.is_admin) {
+  if (!req.user.role !== "admin") {
     return res.status(401).json("Unauthorized");
   }
   proceed();

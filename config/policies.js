@@ -45,4 +45,10 @@ module.exports.policies = {
   "contact/delete": ["pathLogger", "isAuthenticated", "checkIssuer", "isAdmin"],
   "contact/fetch": ["pathLogger", "isAuthenticated", "checkIssuer", "isAdmin"],
   "user/customers": ["pathLogger", "isAuthenticated", "checkIssuer", "isAdmin"],
+  "transactions/fetch": [
+    "pathLogger",
+    "isAuthenticated",
+    "checkIssuer",
+    "isAdmin",
+  ],
 };

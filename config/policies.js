@@ -16,26 +16,26 @@ module.exports.policies = {
    *                                                                          *
    ***************************************************************************/
 
-  // "category/create": [
-  //   "pathLogger",
-  //   "isAuthenticated",
-  //   "checkIssuer",
-  //   "isAdmin",
-  // ],
-  // "category/update": [
-  //   "pathLogger",
-  //   "isAuthenticated",
-  //   "checkIssuer",
-  //   "isAdmin",
-  // ],
-  // "category/delete": [
-  //   "pathLogger",
-  //   "isAuthenticated",
-  //   "checkIssuer",
-  //   "isAdmin",
-  // ],
-  // "orders/delete": ["pathLogger", "isAuthenticated", "checkIssuer", "isAdmin"],
-  // "orders/update": ["pathLogger", "isAuthenticated", "checkIssuer", "isAdmin"],
+  "category/create": [
+    "pathLogger",
+    "isAuthenticated",
+    "checkIssuer",
+    "isAdmin",
+  ],
+  "category/update": [
+    "pathLogger",
+    "isAuthenticated",
+    "checkIssuer",
+    "isAdmin",
+  ],
+  "category/delete": [
+    "pathLogger",
+    "isAuthenticated",
+    "checkIssuer",
+    "isAdmin",
+  ],
+  "orders/delete": ["pathLogger", "isAuthenticated", "checkIssuer", "isAdmin"],
+  "orders/update": ["pathLogger", "isAuthenticated", "checkIssuer", "isAdmin"],
 
   "*": "pathLogger",
   "user/*": ["pathLogger", "isAuthenticated", "checkIssuer"],

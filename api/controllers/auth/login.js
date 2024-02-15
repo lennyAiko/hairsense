@@ -54,6 +54,7 @@ module.exports = {
         lastName: userRecord.lastName,
         email: userRecord.email,
         phone: userRecord.phone,
+        role: userRecord.role,
       },
       issuer: tokenIssuer,
     });

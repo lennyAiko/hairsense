@@ -33,6 +33,11 @@ module.exports = {
     },
     subcategory: {
       type: "string",
+      required: true,
+    },
+    category: {
+      type: "string",
+      required: true,
     },
   },
 
@@ -45,12 +50,16 @@ module.exports = {
     },
   },
 
-  fn: async function ({ name, actualPrice, desc, subcategory }, exits) {
+  fn: async function (
+    { name, actualPrice, desc, subcategory, category },
+    exits
+  ) {
     let product = await Product.updateOne({ id: this.req.params.id }).set({
       name,
       actualPrice,
       desc,
       subcategory,
+      category,
     });
 
     if (!product) {
@@ -59,15 +68,12 @@ module.exports = {
 
     this.req.file("productImg").upload(
       {
-        maxBytes: 3000000, //2MB
-        dirname: require("path").resolve(
-          sails.config.appPath,
-          ".tmp/public/products"
-        ),
-        saveAs: function (file, cb) {
-          imgRandomName = `${randomStrings()}_${file.filename}`;
-          cb(null, imgRandomName);
-        },
+        adapter: require("skipper-s3"),
+        key: S3_ACCESS,
+        secret: S3_SECRET,
+        bucket: "hairsense",
+        ACL: "public-read",
+        maxBytes: 3000000,
       },
       async function whenDone(err, uploadedFiles) {
         if (err) {
@@ -76,7 +82,7 @@ module.exports = {
         }
 
         let productImg = require("util").format(
-          `${UPLOAD_URL}/products/${imgRandomName}`
+          `https://hairsense.s3.us-west-1.amazonaws.com/${filesUploaded[0].fd}`
         );
 
         if (uploadedFiles.length > 0) {

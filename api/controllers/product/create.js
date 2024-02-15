@@ -37,6 +37,10 @@ module.exports = {
       type: "string",
       required: true,
     },
+    category: {
+      type: "string",
+      required: true,
+    },
   },
 
   exits: {
@@ -48,7 +52,10 @@ module.exports = {
     },
   },
 
-  fn: async function ({ name, actualPrice, desc, subcategory }, exits) {
+  fn: async function (
+    { name, actualPrice, desc, subcategory, category },
+    exits
+  ) {
     this.req.file("productImg").upload(
       {
         adapter: require("skipper-s3"),
@@ -56,6 +63,7 @@ module.exports = {
         secret: S3_SECRET,
         bucket: "hairsense",
         ACL: "public-read",
+        maxBytes: 3000000,
       },
       async function whenDone(err, filesUploaded) {
         if (err) {
@@ -76,6 +84,7 @@ module.exports = {
             desc,
             subcategory,
             productImg,
+            category,
           });
           return exits.success("Successfully created product");
         } catch (err) {

@@ -36,6 +36,9 @@ module.exports = {
     favourite: {
       model: "favourite",
     },
+    category: {
+      model: "category",
+    },
   },
   customsToJSON: function () {
     return _.omit(this, ["subcategory", "favourite"]);

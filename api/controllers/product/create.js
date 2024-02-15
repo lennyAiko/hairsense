@@ -1,5 +1,7 @@
 require("dotenv").config();
 const UPLOAD_URL = process.env.UPLOAD_URL;
+const S3_SECRET = process.env.S3_SECRET;
+const S3_ACCESS = process.env.S3_ACCESS;
 
 function randomStrings(length, chars) {
   var length = 16;
@@ -47,33 +49,24 @@ module.exports = {
   },
 
   fn: async function ({ name, actualPrice, desc, subcategory }, exits) {
-    let imgRandomName;
     this.req.file("productImg").upload(
       {
-        maxByte: 3000000, //3MB
-        dirname: require("path").resolve(
-          sails.config.appPath,
-          ".tmp/public/products"
-        ),
-        saveAs: function (file, cb) {
-          imgRandomName = `${randomStrings()}_${file.filename}`;
-          cb(null, imgRandomName);
-        },
+        adapter: require("skipper-s3"),
+        key: S3_ACCESS,
+        secret: S3_SECRET,
+        bucket: "hairsense",
+        ACL: "public-read",
       },
-      async function whenDone(err, uploadedFiles) {
+      async function whenDone(err, filesUploaded) {
         if (err) {
-          return this.res.serverError(err);
+          console.log(err);
+          return exits.badCombo(err);
         }
 
-        // let productImg = require("util").format(
-        //   `${UPLOAD_URL}/products/${randoms}_${uploadedFiles[0].filename}`
-        // );
-
         let productImg = require("util").format(
-          `${UPLOAD_URL}/products/${imgRandomName}`
+          `https://hairsense.s3.us-west-1.amazonaws.com/${filesUploaded[0].fd}`
         );
-
-        if (uploadedFiles < 1) {
+        if (filesUploaded < 1) {
           return exits.badCombo("Could not create product");
         }
         try {
@@ -92,6 +85,52 @@ module.exports = {
       }
     );
 
+    // let imgRandomName;
+    // this.req.file("productImg").upload(
+    //   {
+    //     maxByte: 3000000, //3MB
+    //     dirname: require("path").resolve(
+    //       sails.config.appPath,
+    //       ".tmp/public/products"
+    //     ),
+    //     saveAs: function (file, cb) {
+    //       imgRandomName = `${randomStrings()}_${file.filename}`;
+    //       cb(null, imgRandomName);
+    //     },
+    //   },
+    //   async function whenDone(err, uploadedFiles) {
+    //     if (err) {
+    //       return this.res.serverError(err);
+    //     }
+
+    //     // let productImg = require("util").format(
+    //     //   `${UPLOAD_URL}/products/${randoms}_${uploadedFiles[0].filename}`
+    //     // );
+
+    //     let productImg = require("util").format(
+    //       `${UPLOAD_URL}/products/${imgRandomName}`
+    //     );
+
+    //     if (uploadedFiles < 1) {
+    //       return exits.badCombo("Could not create product");
+    //     }
+    //     try {
+    //       await Product.create({
+    //         name,
+    //         actualPrice,
+    //         desc,
+    //         subcategory,
+    //         productImg,
+    //       });
+    //       return exits.success("Successfully created product");
+    //     } catch (err) {
+    //       sails.log(err);
+    //       return exits.badCombo("Could not create product");
+    //     }
+    //   }
+    // );
+
     // All done.
+    return "ok";
   },
 };

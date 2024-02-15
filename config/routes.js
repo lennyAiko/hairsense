@@ -103,4 +103,7 @@ module.exports.routes = {
 
   // CUSTOMERS
   "GET /customers": "user/customers",
+
+  // TRANSACTIONS
+  "GET /transactions": "transactions/fetch",
 };

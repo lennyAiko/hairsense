@@ -16,6 +16,9 @@ module.exports = {
     chargedAmount: {
       type: "number",
     },
+    createdAt: {
+      type: "string",
+    },
   },
 
   exits: {},
@@ -27,6 +30,14 @@ module.exports = {
       payment: inputs.status,
       chargedAmount: inputs.chargedAmount,
       customerEmail: inputs.customerEmail,
+    });
+
+    await Transactions.create({
+      orderNo: order.id,
+      reference: inputs.transactionRef,
+      amount: inputs.chargedAmount,
+      name: order.firstName + " " + order.lastName,
+      date: inputs.createdAt,
     });
 
     if (order) {

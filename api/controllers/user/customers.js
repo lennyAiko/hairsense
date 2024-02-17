@@ -12,7 +12,7 @@ module.exports = {
   },
 
   fn: async function (inputs, exits) {
-    const customers = await Customer.find({ role: "client" });
+    const customers = await User.find({ role: "client" });
 
     // All done.
     return exits.success(customers);

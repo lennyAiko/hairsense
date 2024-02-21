@@ -29,12 +29,7 @@ module.exports.security = {
 
   cors: {
     allRoutes: true,
-    allowOrigins: [
-      "http://localhost:3000",
-      "http://localhost:3001",
-      "http://localhost:3002",
-      "https://www.hairsenseretail.com",
-    ],
+    allowOrigins: ["http://localhost:3949", "https://www.hairsenseretail.com"],
     allowCredentials: true,
     allowRequestHeaders:
       "Authorization, Content-Type, Origin, X-Requested-With, Accept",

@@ -1,9 +1,13 @@
 module.exports = {
   friendlyName: "Fetch",
 
-  description: "Fetch category.",
+  description: "Fetch subcategory.",
 
-  inputs: {},
+  inputs: {
+    id: {
+      type: "string",
+    },
+  },
 
   exits: {
     success: {
@@ -12,7 +16,9 @@ module.exports = {
   },
 
   fn: async function (inputs, exits) {
-    const categories = await Category.find({});
+    const categories = await Category.find({ id: inputs.id }).populate(
+      "subcategories"
+    );
 
     // All done.
     return exits.success(categories);

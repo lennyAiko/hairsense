@@ -18,10 +18,10 @@ module.exports = {
   fn: async function (inputs, exits) {
     const subcategory = await Subcategory.findOne({
       id: this.req.params.id,
-    }).populate("category");
+    }).populate("products");
 
     if (!subcategory) {
-      throw exits.notFound("Category not found");
+      throw exits.notFound("Subcategory not found");
     }
 
     // All done.

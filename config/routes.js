@@ -114,5 +114,6 @@ module.exports.routes = {
   "GET /admin/users": "admin/fetch-users",
   "GET /admin/admins": "admin/fetch-admins",
   "GET /admin/users/:id": "admin/view-users",
+  "GET /admin": "admin/dashboard",
   "DELETE /admin/users/:id": "admin/delete-users",
 };

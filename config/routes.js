@@ -91,7 +91,7 @@ module.exports.routes = {
 
   // ORDER
   "POST /store/order": "orders/create",
-  "POST /store57485487hfhdhdfhdf/webhook": "orders/webhook",
+  "POST /store/57485487hfhdhdfhdf/webhook": "auth/webhook",
   "GET /store/order": "orders/fetch",
   "GET /store/order/:id": "orders/view",
   "PATCH /store/order/:id": "orders/update",
@@ -109,5 +109,5 @@ module.exports.routes = {
   "GET /transactions": "transactions/fetch",
 
   // ADMIN
-  "POST /admin": "admin/createAdmin",
+  "POST /admin/create_account": "admin/create-admin",
 };

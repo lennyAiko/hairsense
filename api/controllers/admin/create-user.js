@@ -68,6 +68,7 @@ module.exports = {
       lastName: inputs.lastName,
       phone: inputs.phone,
       password: hashedPassword,
+      role: inputs.role,
     }).fetch();
 
     if (!newUser) {

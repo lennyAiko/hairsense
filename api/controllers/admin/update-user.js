@@ -9,33 +9,30 @@ module.exports = {
     },
     email: {
       type: "string",
-      required: true,
       isEmail: true,
     },
     firstName: {
       type: "string",
-      required: true,
       minLength: 3,
     },
     lastName: {
       type: "string",
-      required: true,
       minLength: 3,
     },
     phone: {
       type: "string",
-      required: true,
       minLength: 11,
     },
     role: {
       type: "string",
-      required: true,
       isIn: ["admin", "user", "superadmin"],
     },
     password: {
       type: "string",
       minLength: 8,
-      required: true,
+    },
+    status: {
+      type: "boolean",
     },
   },
 
@@ -57,13 +54,16 @@ module.exports = {
       throw { invalidData: "Id is required" };
     }
 
+    const existingUser = await User.findOne({ id: inputs.id });
+
     let updatedUser = await User.updateOne({ id: inputs.id }).set({
-      email: inputs.email,
-      firstName: inputs.firstName,
-      lastName: inputs.lastName,
-      phone: inputs.phone,
-      role: inputs.role,
-      password: inputs.password,
+      email: inputs.email || existingUser.email,
+      firstName: inputs.firstName || existingUser.firstName,
+      lastName: inputs.lastName || existingUser.lastName,
+      phone: inputs.phone || existingUser.phone,
+      role: inputs.role || existingUser.role,
+      password: inputs.password || existingUser.password,
+      status: inputs.status || existingUser.status,
     });
 
     if (!updatedUser) {

@@ -26,7 +26,7 @@ module.exports = {
     },
     role: {
       type: "string",
-      isIn: ["admin", "client"],
+      isIn: ["admin", "client", "superadmin"],
       defaultsTo: "client",
       maxLength: 7,
     },

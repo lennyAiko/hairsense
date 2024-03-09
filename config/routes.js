@@ -107,4 +107,7 @@ module.exports.routes = {
 
   // TRANSACTIONS
   "GET /transactions": "transactions/fetch",
+
+  // ADMIN
+  "POST /admin": "admin/createAdmin",
 };

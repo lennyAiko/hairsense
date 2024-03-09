@@ -51,4 +51,5 @@ module.exports.policies = {
     "checkIssuer",
     "isAdmin",
   ],
+  "admin/*": ["pathLogger", "isAuthenticated", "checkIssuer", "isSuperAdmin"],
 };

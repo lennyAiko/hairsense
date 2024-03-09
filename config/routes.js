@@ -109,5 +109,10 @@ module.exports.routes = {
   "GET /transactions": "transactions/fetch",
 
   // ADMIN
-  "POST /admin/create_account": "admin/create-admin",
+  "POST /admin/users": "admin/create-user",
+  "PATCH /admin/users/:id": "admin/update-user",
+  "GET /admin/users": "admin/fetch-users",
+  "GET /admin/admins": "admin/fetch-admins",
+  "GET /admin/users/:id": "admin/view-users",
+  "DELETE /admin/users/:id": "admin/delete-users",
 };

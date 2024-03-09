@@ -30,6 +30,10 @@ module.exports = {
       defaultsTo: "client",
       maxLength: 7,
     },
+    status: {
+      type: "boolean",
+      defaultsTo: true,
+    },
     phone: {
       type: "string",
       maxLength: 11,

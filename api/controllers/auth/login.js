@@ -55,12 +55,14 @@ module.exports = {
         email: userRecord.email,
         phone: userRecord.phone,
         role: userRecord.role,
+        status: userRecord.status,
       },
       issuer: tokenIssuer,
     });
     // All done.
     return exits.success({
       role: userRecord.role,
+      status: userRecord.status,
       access: token.access,
       refresh: token.refresh,
     });

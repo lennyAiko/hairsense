@@ -27,7 +27,7 @@ module.exports = {
     role: {
       type: "string",
       required: true,
-      isIn: ["admin", "user", "superadmin"],
+      isIn: ["admin", "client", "superadmin"],
     },
     password: {
       type: "string",

@@ -39,6 +39,7 @@ module.exports.routes = {
       produces: ["application/json"],
     },
   },
+  "PATCH /accounts/forgot_password": "user/forgot-password",
 
   // USER
   "GET /accounts/user": {

@@ -54,23 +54,27 @@ module.exports = {
       throw { invalidData: "Id is required" };
     }
 
-    const existingUser = await User.findOne({ id: inputs.id });
+    // const existingUser = await User.findOne({ id: inputs.id });
 
-    let updatedUser = await User.updateOne({ id: inputs.id }).set({
-      email: inputs.email || existingUser.email,
-      firstName: inputs.firstName || existingUser.firstName,
-      lastName: inputs.lastName || existingUser.lastName,
-      phone: inputs.phone || existingUser.phone,
-      role: inputs.role || existingUser.role,
-      password: inputs.password || existingUser.password,
-      status: inputs.status || existingUser.status,
-    });
+    const hashedPassword = await sails.helpers.passwords.hashPassword(
+      inputs.password
+    );
 
-    if (!updatedUser) {
+    try {
+      await User.updateOne({ id: this.req.params.id }).set({
+        email: inputs.email,
+        firstName: inputs.firstName,
+        lastName: inputs.lastName,
+        phone: inputs.phone,
+        role: inputs.role,
+        password: hashedPassword,
+        status: inputs.status,
+      });
+    } catch (err) {
       throw { badCombo: "Could not update user" };
     }
 
     // All done.
-    return exits.success({ message: "User updated successful" });
+    return exits.success({ message: "User updated successfully" });
   },
 };

@@ -70,6 +70,7 @@ module.exports = {
 
     const payload = {
       email: this.req.user.email,
+      CustomerName: `${firstName} ${lastName}`,
       amount,
       callback: "https://www.hairsenseretail.com/my_account",
       currency: "NGN",

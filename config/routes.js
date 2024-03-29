@@ -92,7 +92,7 @@ module.exports.routes = {
 
   // ORDER
   "POST /store/order": "orders/create",
-  "POST /store/57485487hfhdhdfhdf/webhook": "auth/webhook",
+  "POST /store/hydrogenpay/webhook": "auth/webhook",
   "GET /store/order": "orders/fetch",
   "GET /store/order/:id": "orders/view",
   "PATCH /store/order/:id": "orders/update",

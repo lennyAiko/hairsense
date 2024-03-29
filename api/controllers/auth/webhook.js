@@ -24,27 +24,28 @@ module.exports = {
   exits: {},
 
   fn: async function (inputs) {
-    let order = await Order.updateOne({
-      transactionRef: inputs.transactionRef,
-    }).set({
-      payment: inputs.status,
-      chargedAmount: inputs.chargedAmount,
-      customerEmail: inputs.customerEmail,
-    });
+    // let order = await Order.updateOne({
+    //   transactionRef: inputs.transactionRef,
+    // }).set({
+    //   payment: inputs.status,
+    //   chargedAmount: inputs.chargedAmount,
+    //   customerEmail: inputs.customerEmail,
+    // });
 
-    await Transactions.create({
-      orderNo: order.id,
-      reference: inputs.transactionRef,
-      amount: inputs.chargedAmount,
-      name: order.firstName + " " + order.lastName,
-      date: inputs.createdAt,
-    });
+    // await Transactions.create({
+    //   orderNo: order.id,
+    //   reference: inputs.transactionRef,
+    //   amount: inputs.chargedAmount,
+    //   name: order.firstName + " " + order.lastName,
+    //   date: inputs.createdAt,
+    // });
 
-    if (order) {
-      sails.log("successful webhook");
-    } else {
-      sails.log("unsuccessful webhook");
-    }
+    // if (order) {
+    //   sails.log("successful webhook");
+    // } else {
+    //   sails.log("unsuccessful webhook");
+    // }
+    sails.log(inputs);
     // All done.
     return "ok";
   },

@@ -24,12 +24,13 @@ module.exports = {
   exits: {},
 
   fn: async function (inputs) {
+    sails.log(inputs);
     let order = await Order.updateOne({
-      transactionRef: inputs.transactionRef,
+      customerEmail: inputs.customerEmail,
     }).set({
       payment: inputs.status,
       chargedAmount: inputs.chargedAmount,
-      customerEmail: inputs.customerEmail,
+      transactionRef: inputs.transactionRef,
     });
 
     await Transactions.create({
@@ -40,7 +41,6 @@ module.exports = {
       date: inputs.createdAt,
     });
 
-    sails.log(inputs);
     // All done.
     return "ok";
   },

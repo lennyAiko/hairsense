@@ -56,7 +56,7 @@ module.exports = {
     },
     payment: {
       type: "string",
-      isIn: ["Failed", "Pending", "Successful"],
+      isIn: ["Failed", "Pending", "Paid"],
       maxLength: 32,
       required: true,
     },
@@ -70,6 +70,7 @@ module.exports = {
     customerEmail: {
       columnName: "customer_email",
       type: "string",
+      isEmail: true,
     },
     chargedAmount: {
       type: "number",
